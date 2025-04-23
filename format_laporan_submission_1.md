@@ -64,13 +64,13 @@ Dataset yang digunakan dalam proyek ini merupakan versi sintetis dari data risik
 ---
 ## 🧾 visual dataset Struktur Dataset
 
-![alt text](./images/strukturdataset.png)
+![alt text](https://raw.githubusercontent.com/haldies/machine_terapan_h/main/images/strukturdataset.png)
 ---
 Tipe Data: Secara keseluruhan, tipe data sudah sesuai.
 
 ## 📈 Statistik Deskriptif (Numerik)
 
-![alt text](./images/dekriptif.png)
+![alt text](https://raw.githubusercontent.com/haldies/machine_terapan_h/main/images/dekriptif.png)
 ---
 Usia (person_age): Nilai maksimal usia adalah 144, yang tidak realistis. Ini menunjukkan adanya outlier yang perlu diperiksa lebih lanjut.
 
@@ -102,7 +102,7 @@ Pengalaman Kerja (person_emp_exp): Pengalaman kerja maksimal yang sangat tinggi 
 Tidak ada data yang memiliki nilai hilang (missing value).
 
 ## 🔗 Tabel Korelasi Antar Variabel Numerik
-![alt text](./images/tabel_corelasi.png)
+![alt text](https://raw.githubusercontent.com/haldies/machine_terapan_h/main/images/tabel_corelasi.png)
 
 Berdasarkan matriks korelasi di atas, variabel yang memiliki hubungan paling kuat dengan loan_status (status kelolosan pinjaman) adalah loan_percent_income (0.38) dan loan_int_rate (0.33), yang artinya semakin tinggi persentase pinjaman terhadap pendapatan atau suku bunga, semakin besar kemungkinan pengajuan pinjaman lolos. Sementara variabel seperti person_age, person_income, dan credit_score memiliki korelasi negatif lemah terhadap loan_status, menunjukkan pengaruh yang kecil. Secara umum, tidak ada korelasi yang sangat kuat (mendekati 1 atau -1), namun dua variabel tadi bisa menjadi kandidat penting dalam analisis prediksi status pinjaman.
 
@@ -114,7 +114,7 @@ Berdasarkan matriks korelasi di atas, variabel yang memiliki hubungan paling kua
 | 1           | Disetujui  | 10,000 |
 | **Total**   |            | 45,000 |
 
-![alt text](./images/distribusiSp.png)
+![alt text](https://raw.githubusercontent.com/haldies/machine_terapan_h/main/images/distribusiSp.png)
 
 Distribusi data pada kolom loan_status menunjukkan bahwa dari total 45.000 data, sebanyak 35.000 pinjaman (77,8%) tidak disetujui (loan_status = 0) dan hanya 10.000 pinjaman (22,2%) yang disetujui (loan_status = 1). Hal ini menunjukkan ketidakseimbangan data (data imbalance), yang penting diperhatikan saat melakukan analisis atau pelatihan model prediksi, karena model bisa cenderung memprediksi mayoritas kelas.
 
