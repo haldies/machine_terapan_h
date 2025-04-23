@@ -166,9 +166,6 @@ y = df_resampled['loan_status']
 Selanjutnya, dilakukan pembagian data menjadi **data pelatihan** dan **data pengujian** menggunakan fungsi `train_test_split` dengan proporsi **80:20**. Pembagian ini bertujuan agar model dapat belajar dari data yang tersedia dan diuji pada data yang belum pernah dilihat, guna menghindari *overfitting* dan memperoleh evaluasi performa yang objektif. Parameter `random_state=42` digunakan untuk memastikan hasil pembagian data konsisten setiap kali dijalankan.
 
 ---
-Siap! Ini versi **Modeling** yang sudah dirapikan dengan penjelasan lebih enak dibaca dan penyisipan kode yang **sewajarnya saja** sesuai arahan kamu:
-
----
 
 ## 🧠 **Modeling**
 
