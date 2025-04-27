@@ -160,7 +160,7 @@ Tidak ada data yang memiliki nilai hilang (missing value).
 
 
 ## 🔗 Tabel Korelasi Antar Variabel Numerik
-![alt text](Korelasi.png)
+![alt text](https://raw.githubusercontent.com/haldies/machine_terapan_h/main/image/Korelasi.png)
 
 Berdasarkan matriks korelasi di atas, variabel yang memiliki hubungan paling kuat dengan loan_status (status kelolosan pinjaman) adalah loan_percent_income (0.38) dan loan_int_rate (0.33), yang artinya semakin tinggi persentase pinjaman terhadap pendapatan atau suku bunga, semakin besar kemungkinan pengajuan pinjaman lolos. Sementara variabel seperti person_age, person_income, dan credit_score memiliki korelasi negatif lemah terhadap loan_status, menunjukkan pengaruh yang kecil. Secara umum, tidak ada korelasi yang sangat kuat (mendekati 1 atau -1), namun dua variabel tadi bisa menjadi kandidat penting dalam analisis prediksi status pinjaman.
 
