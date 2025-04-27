@@ -28,7 +28,6 @@ Tujuan dibuat proyek ini adalah sebagai barikut:
 
 3. Meningkatkan akurasi model dengan melakukan pemilihan fitur (feature selection) yang optimal dan menerapkan teknik hyperparameter tuning untuk memaksimalkan performa model.
 
-
 ### Solution statements
 - Menerapkan beberapa algoritma klasifikasi seperti Logistic Regression, Random Forest, dan XGBoost untuk membandingkan performa dalam memprediksi loan_status. Evaluasi dilakukan menggunakan metrik seperti akurasi, precision, recall, dan F1-score untuk memastikan keandalan model.
 
@@ -59,25 +58,22 @@ Dataset yang digunakan dalam proyek ini merupakan versi sintetis dari data risik
 - **previous_loan_defaults_on_file** : Indikator apakah peminjam pernah mengalami gagal bayar pada pinjaman sebelumnya. 
 - **loan_status** *(target variable)* : Status persetujuan pinjaman. Nilai 1 menandakan pinjaman disetujui, dan 0 menandakan pinjaman ditolak.
 
-
-**Rubrik/Kriteria Tambahan**:
 ---
 ## 🧾 visual dataset Struktur Dataset
 
-![alt text](https://raw.githubusercontent.com/haldies/machine_terapan_h/main/images/strukturdataset.png)
+![alt text](StrukturDataset.png)
 ---
 Tipe Data: Secara keseluruhan, tipe data sudah sesuai.
 
 ## 📈 Statistik Deskriptif (Numerik)
 
-![alt text](https://raw.githubusercontent.com/haldies/machine_terapan_h/main/images/dekriptif.png)
+![alt text](Deskriptif.png)
 ---
 Usia (person_age): Nilai maksimal usia adalah 144, yang tidak realistis. Ini menunjukkan adanya outlier yang perlu diperiksa lebih lanjut.
 
 Pendapatan (person_income): Nilai maksimal yang sangat tinggi (7.2 juta), yang mungkin merupakan outlier. Biasanya, pendapatan ekstrem ini perlu dikoreksi.
 
 Pengalaman Kerja (person_emp_exp): Pengalaman kerja maksimal yang sangat tinggi (125 tahun) jelas merupakan outlier yang tidak wajar.
-
 
 ## 🔍 Cek Missing Value
 
@@ -94,29 +90,84 @@ Pengalaman Kerja (person_emp_exp): Pengalaman kerja maksimal yang sangat tinggi 
 | loan_int_rate                  | 0     |
 | loan_percent_income            | 0     |
 | cb_person_cred_hist_length     | 0     |
-| credit_score                   | 0     |
+| credit_score                   | 0     |****
 | previous_loan_defaults_on_file | 0     |
 | loan_status                    | 0     |
 
 
 Tidak ada data yang memiliki nilai hilang (missing value).
 
+## 📊 Visualisasi Distribusi Data
+![alt text](Distribusi_Data.png)
+.
+1. **Distribusi Umur Pemohon (`person_age`)**
+**Insight**:  
+🔎 Sebagian besar peminjam masih muda, di rentang usia produktif (20–30 tahun). Tapi perlu pembersihan data untuk outlier umur >100 tahun.
+
+---
+
+2. **Distribusi Pengalaman Kerja (`person_emp_exp`)**
+**Insight**:  
+🔎 Banyak peminjam adalah pekerja awal karir (1–8 tahun pengalaman). Perlu menghapus pengalaman kerja tidak logis (di atas 60 tahun).
+
+---
+
+3. **Distribusi Jumlah Pinjaman (`loan_amnt`)**
+**Insight**:  
+🔎 Sebagian besar pinjaman berada di kisaran kecil hingga menengah, cocok untuk pinjaman pribadi atau kebutuhan konsumtif.
+
+---
+4. **Distribusi Suku Bunga Pinjaman (`loan_int_rate`)**
+**Insight**:  
+🔎 Rentang bunga cukup wajar untuk kredit konsumer. Mayoritas bunga berada antara **8%–13%**, artinya tidak terlalu mahal.
+
+---
+
+5. **Distribusi Rasio Pinjaman terhadap Pendapatan (`loan_percent_income`)**
+**Insight**:  
+🔎 Kebanyakan peminjam hanya menggunakan sebagian kecil pendapatannya untuk membayar pinjaman, yang berarti beban cicilan masih **cukup aman**.
+
+---
+
+6. **Distribusi Panjang Riwayat Kredit (`cb_person_cred_hist_length`)**
+**Insight**:  
+🔎 Banyak peminjam baru memiliki riwayat kredit pendek (sekitar 3–8 tahun), menandakan banyaknya peminjam generasi muda atau baru mulai membangun kredit.
+
+---
+
+7. **Distribusi Skor Kredit (`credit_score`)** 
+🔎 Skor rata-rata ada di **kategori wajar** (600–700), tapi ada juga yang rendah (di bawah 600) yang perlu perhatian lebih karena berisiko default.
+
+---
+
+## 📊 Melihat visualisasi Distribusi Data Kategorikal
+![alt text](Data_Kategorikal.png)
+
+- **Distribusi Gender (person_gender)**
+🔎 Jumlah peminjam laki-laki sedikit lebih banyak dibanding perempuan. Ini menunjukkan bahwa partisipasi dalam pengajuan pinjaman didominasi laki-laki, tapi perbedaannya tidak terlalu jauh.
+
+- **Distribusi Pendidikan (person_education)**
+🔎 Mayoritas peminjam memiliki pendidikan minimal SMA hingga S1. Jumlah yang berpendidikan Master dan Doctorate cukup kecil, yang wajar karena semakin tinggi pendidikan, biasanya profil peminjam lebih sedikit.
+
+- **Distribusi Kepemilikan Rumah (person_home_ownership)**
+🔎 Sebagian besar peminjam tinggal di rumah sewa atau sedang dalam cicilan KPR. Ini bisa berarti banyak peminjam berada dalam tahap membangun aset dan belum memiliki rumah pribadi sepenuhnya.
+
+- **Distribusi Default Pinjaman Sebelumnya (previous_loan_defaults_on_file)**
+🔎 Jumlah peminjam yang pernah mengalami gagal bayar hampir sama dengan yang tidak. Ini mengindikasikan dataset mengandung risiko yang cukup besar dan perlu perhatian dalam analisis risiko pinjaman.
+
+- **Distribusi Status Pinjaman (loan_status)**
+🔎 Distribusi data pada kolom loan_status menunjukkan bahwa data pinjaman sekitar (77,8%) tidak disetujui (loan_status = 0) dan data pinjaman sekitar (22,2%) yang disetujui (loan_status = 1). Hal ini menunjukkan ketidakseimbangan data (data imbalance), yang penting diperhatikan saat melakukan analisis atau pelatihan model prediksi, karena model bisa cenderung memprediksi mayoritas kelas.
+
+
 ## 🔗 Tabel Korelasi Antar Variabel Numerik
-![alt text](https://raw.githubusercontent.com/haldies/machine_terapan_h/main/images/tabel_corelasi.png)
+![alt text](Korelasi.png)
 
 Berdasarkan matriks korelasi di atas, variabel yang memiliki hubungan paling kuat dengan loan_status (status kelolosan pinjaman) adalah loan_percent_income (0.38) dan loan_int_rate (0.33), yang artinya semakin tinggi persentase pinjaman terhadap pendapatan atau suku bunga, semakin besar kemungkinan pengajuan pinjaman lolos. Sementara variabel seperti person_age, person_income, dan credit_score memiliki korelasi negatif lemah terhadap loan_status, menunjukkan pengaruh yang kecil. Secara umum, tidak ada korelasi yang sangat kuat (mendekati 1 atau -1), namun dua variabel tadi bisa menjadi kandidat penting dalam analisis prediksi status pinjaman.
 
 ## 📊 Distribusi Status Pinjaman
 
-| Kode Status | Keterangan | Jumlah |
-| ----------- | ---------- | ------ |
-| 0           | Ditolak    | 35,000 |
-| 1           | Disetujui  | 10,000 |
-| **Total**   |            | 45,000 |
-
-![alt text](https://raw.githubusercontent.com/haldies/machine_terapan_h/main/images/distribusiSp.png)
-
-Distribusi data pada kolom loan_status menunjukkan bahwa dari total 45.000 data, sebanyak 35.000 pinjaman (77,8%) tidak disetujui (loan_status = 0) dan hanya 10.000 pinjaman (22,2%) yang disetujui (loan_status = 1). Hal ini menunjukkan ketidakseimbangan data (data imbalance), yang penting diperhatikan saat melakukan analisis atau pelatihan model prediksi, karena model bisa cenderung memprediksi mayoritas kelas.
+![alt text](loan_status.png)
+Distribusi data pada kolom loan_status menunjukkan bahwa data pinjaman sekitar (77,8%) tidak disetujui (loan_status = 0) dan data pinjaman sekitar (22,2%) yang disetujui (loan_status = 1). Hal ini menunjukkan ketidakseimbangan data (data imbalance), yang penting diperhatikan saat melakukan analisis atau pelatihan model prediksi, karena model bisa cenderung memprediksi mayoritas kelas.
 
 ## Data Preparation
 Pada bagian ini, dilakukan beberapa tahapan preprocessing data untuk memastikan data yang digunakan dalam pemodelan bersih, seimbang, dan siap untuk dilatih. Adapun tahapan-tahapan data preparation yang dilakukan secara berurutan adalah sebagai berikut:
@@ -148,9 +199,7 @@ Dengan demikian, **Label Encoding dilakukan sebelum Data Balancing** agar data s
 ---
 
 ### 3. Penyeimbangan Data (Data Balancing)
-Distribusi variabel target loan_status sangat tidak seimbang, di mana sekitar 77,8% data berada di kelas "ditolak" (0), dan hanya 22,2% yang "disetujui" (1). Kondisi ini bisa membuat model cenderung memprediksi mayoritas kelas.
-
-Untuk mengatasi hal ini, akan digunakan metode SMOTENC (Synthetic Minority Oversampling Technique for Nominal and Continuous). Teknik ini cocok karena dataset memiliki kombinasi fitur kategorikal dan numerik. Dengan SMOTENC, data dari kelas minoritas (pinjaman disetujui) akan di-oversample agar distribusinya lebih seimbang dengan kelas mayoritas.
+Distribusi variabel target loan_status dalam dataset sangat tidak seimbang, dengan sekitar 77,8% data berada pada kelas ditolak (0) dan hanya 22,2% disetujui (1), sehingga model cenderung bias ke kelas mayoritas. Untuk mengatasi hal ini, digunakan teknik SMOTENC (Synthetic Minority Oversampling Technique for Nominal and Continuous) karena dataset mengandung kombinasi fitur kategorikal dan numerik. Pertama, fitur input (X) dan target (y) dipisahkan, lalu fitur kategorikal ditentukan berdasarkan indeks kolom. Dengan SMOTENC, data kelas minoritas (1) di-oversample hingga mencapai 15.000 data. Selanjutnya, digunakan RandomUnderSampler untuk mengurangi data dari kelas mayoritas (0) menjadi 15.000 juga, sehingga kedua kelas seimbang. Data hasil balancing ini kemudian digabungkan kembali ke dalam DataFrame baru df_resampled yang memiliki distribusi kelas 0 dan 1 masing-masing sebanyak 15.000, dan siap digunakan untuk pelatihan model secara lebih adil.
 
 ### 4. Split Data  
 Pada tahap ini, dataset dibagi menjadi fitur dan target dengan perintah:
@@ -167,177 +216,71 @@ Selanjutnya, dilakukan pembagian data menjadi **data pelatihan** dan **data peng
 
 ---
 
-## 🧠 **Modeling**
-
-Pada proyek ini, digunakan **tiga algoritma machine learning** untuk menyelesaikan permasalahan klasifikasi status pinjaman, yaitu:
-
-1. **Logistic Regression**
-2. **Random Forest Classifier**
-3. **XGBoost Classifier**
+## 🧠 Modeling
+Dalam proyek ini, digunakan tiga algoritma machine learning untuk menyelesaikan permasalahan klasifikasi status pinjaman, yaitu **Logistic Regression**, **Random Forest Classifier**, dan **XGBoost Classifier**. Pemilihan ketiga algoritma ini didasarkan pada pertimbangan variasi kompleksitas, kemampuan generalisasi, serta efisiensi komputasi.
 
 ---
 
-### 1. **Tahapan dan Parameter Awal**
+### 📌 **Alasan Pemilihan Algoritma**
 
-Sebagai baseline, ketiga model dijalankan menggunakan **parameter default**. Berikut implementasi awal ketiga model:
+- **Logistic Regression** dipilih sebagai baseline karena merupakan algoritma klasifikasi linear yang sederhana dan cepat. Meski tidak mampu menangkap hubungan non-linear antar fitur, model ini efektif pada dataset yang seimbang dan bersih.
+  
+- **Random Forest Classifier** merupakan algoritma ensemble berbasis pohon keputusan. Ia mampu menangani relasi non-linear dan cukup robust terhadap overfitting karena menggunakan teknik bagging dan rata-rata dari banyak decision tree.
 
-```python
-logreg_model = LogisticRegression(max_iter=1000, random_state=42)
-```
-
-```python
-rf_model = RandomForestClassifier(random_state=42)
-```
-
-```python
-xgb_model = XGBClassifier(use_label_encoder=False, eval_metric='logloss', random_state=42)
-```
-
-Hasil evaluasi awal pada data uji menunjukkan performa yang cukup baik:
-
-| Model              | Accuracy | F1-Score Class 0 | F1-Score Class 1 |
-|-------------------|----------|------------------|------------------|
-| Logistic Regression | 88%      | 0.88             | 0.88             |
-| Random Forest       | 91%      | 0.91             | 0.91             |
-| XGBoost             | 92%      | 0.92             | 0.92             |
+- **XGBoost** merupakan algoritma boosting yang sangat populer karena performa akurasi yang tinggi, efisiensi dalam komputasi, serta memiliki kemampuan regularisasi yang baik untuk menghindari overfitting. Algoritma ini juga sangat fleksibel dan cocok untuk dataset besar dan kompleks.
 
 ---
 
-### 2. **Hyperparameter Tuning (GridSearchCV)**
-
-Untuk meningkatkan performa, dilakukan **hyperparameter tuning** dengan `GridSearchCV` pada ketiga model. Parameter yang diuji antara lain:
-
-- **Logistic Regression**: `C`, `solver`, `max_iter`
-- **Random Forest**: `n_estimators`, `max_depth`, `min_samples_split`, `min_samples_leaf`, `max_features`
-- **XGBoost**: `n_estimators`, `max_depth`, `learning_rate`, `subsample`, `colsample_bytree`
-
-Code saya gunain `GridSearchCV`:
-
-```python
-param_grid_logreg = {
-    'C': [0.01, 0.1, 1, 10],
-    'penalty': ['l2'],
-    'solver': ['lbfgs', 'saga'],
-    'max_iter': [500, 1000]
-}
-
-grid_logreg = GridSearchCV(
-    LogisticRegression(random_state=42),
-    param_grid_logreg,
-    cv=5,
-    scoring='f1',
-    n_jobs=-1
-)
-grid_logreg.fit(X_train, y_train)
-```
-
-Hasil setelah tuning:
-
-| Model (Tuned)       | Accuracy | F1-Score Class 0 | F1-Score Class 1 |
-|---------------------|----------|------------------|------------------|
-| Logistic Regression | 88%      | 0.87             | 0.88             |
-| Random Forest       | 91%      | 0.91             | 0.92             |
-| XGBoost             | 93%      | 0.93             | 0.93             |
-
-📌 **Catatan**:  
-Hasil tuning menunjukkan bahwa **peningkatan performa tidak signifikan**, terutama untuk Logistic Regression dan Random Forest. Namun, proses tuning tetap penting untuk menghindari penggunaan parameter default yang kurang optimal di dataset tertentu.
-
----
-
-### ✅ **Analisis Kelebihan & Kekurangan**
-
-- **Logistic Regression**  
-  ✔️ Ringan, cepat dilatih  
-  ❌ Kurang baik untuk relasi non-linear antar fitur
-
-- **Random Forest**  
-  ✔️ Stabil, kuat terhadap overfitting  
-  ❌ Konsumsi memori besar di dataset besar
-
-- **XGBoost**  
-  ✔️ Akurasi tinggi, regularisasi kuat  
-  ❌ Butuh waktu lebih untuk training jika dataset besar
-
----
-
-### 🏆 **Pemilihan Model Terbaik**
-
-Model **XGBoost** dipilih sebagai **model terbaik** karena:
-- Memiliki **akurasi tertinggi** (93%)
-- F1-score tinggi dan **seimbang di kedua kelas**
-- Cocok digunakan untuk **dataset besar dan tidak seimbang**
-- Memiliki kemampuan **regularisasi** untuk menghindari overfitting
-
----
-
-
-### 1. **Tahapan dan Parameter Awal**
-
-Sebagai tahap awal, ketiga model dijalankan menggunakan parameter **default** untuk melihat performa dasarnya (baseline). Berikut adalah hasil evaluasi pada data uji:
-
-#### ✅ **Logistic Regression (Default)**
-- **Accuracy**: 88%
-- **F1-Score (Class 0)**: 0.88
-- **F1-Score (Class 1)**: 0.88
-
-#### 🌲 **Random Forest (Default)**
-- **Accuracy**: 91%
-- **F1-Score (Class 0)**: 0.91
-- **F1-Score (Class 1)**: 0.91
-
-#### 🚀 **XGBoost (Default)**
-- **Accuracy**: 92%
-- **F1-Score (Class 0)**: 0.92
-- **F1-Score (Class 1)**: 0.92
-
----
-
-### 2. **Hyperparameter Tuning (GridSearchCV)**
-
-Untuk mengoptimalkan performa, dilakukan **hyperparameter tuning** menggunakan `GridSearchCV`. Berikut parameter yang disesuaikan:
-
-- **Logistic Regression**: `C`, `solver`, `penalty`, `max_iter`
-- **Random Forest**: `n_estimators`, `max_depth`, `min_samples_split`, `min_samples_leaf`, `max_features`
-- **XGBoost**: `n_estimators`, `max_depth`, `learning_rate`, `subsample`, `colsample_bytree`
-
-#### 🔍 Hasil Setelah Tuning:
-
-| Model (Tuned)        | Accuracy | F1-Score Class 0 | F1-Score Class 1 |
-|----------------------|----------|------------------|------------------|
-| Logistic Regression  | 88%      | 0.87             | 0.88             |
-| Random Forest        | 91%      | 0.91             | 0.92             |
-| XGBoost              | 93%      | 0.93             | 0.93             |
-
-📌 **Catatan**:  
-Proses tuning tidak menghasilkan **peningkatan performa yang signifikan** dibandingkan model default, terutama pada Logistic Regression dan Random Forest. Namun, tuning tetap penting untuk memastikan bahwa model berjalan dengan kombinasi parameter yang paling optimal dan stabil untuk dataset yang digunakan.
-
----
-
-### ✅ **Analisis Kelebihan & Kekurangan**
+### ⚙️ **Parameter Awal dan Alasan Pemilihan**
 
 - **Logistic Regression**
-  - ✔️ Cepat dan ringan
-  - ❌ Kurang mampu menangani relasi non-linear antar fitur
+  - `max_iter=1000`: Digunakan untuk memastikan proses konvergensi selesai, terutama jika jumlah fitur cukup banyak atau data tidak terstandarisasi dengan sempurna.
+  - `random_state=42`: Digunakan untuk memastikan hasil yang konsisten dan reproducible.
 
 - **Random Forest**
-  - ✔️ Kuat terhadap overfitting, bisa menangkap interaksi kompleks
-  - ❌ Lebih berat dari sisi komputasi saat dataset besar
+  - `random_state=42`: Untuk memastikan hasil eksperimen dapat direproduksi.
 
 - **XGBoost**
-  - ✔️ Performa tinggi, efisien, regularisasi bagus
-  - ❌ Training lebih lama jika parameter terlalu banyak
+  - `use_label_encoder=False`: Dinonaktifkan karena label encoder bawaan XGBoost sudah deprecated.
+  - `eval_metric='logloss'`: Dipilih karena permasalahan ini adalah klasifikasi biner, dan logloss merupakan metrik loss yang umum digunakan pada klasifikasi biner untuk mengukur probabilitas prediksi.
+  - `random_state=42`: Konsistensi hasil eksperimen.
+
+---
+
+### 🔍 **Hyperparameter Tuning dan Rasionalisasi**
+
+Untuk meningkatkan performa, dilakukan proses **GridSearchCV** terhadap kombinasi parameter yang relevan. Berikut alasan pemilihan parameter untuk masing-masing model:
+
+- **Logistic Regression**
+  - `C`: Mengontrol strength dari regularisasi. Nilai kecil berarti regularisasi kuat (model lebih sederhana), nilai besar berarti model lebih kompleks.
+  - `solver`: Memilih algoritma optimasi. Misalnya, 'lbfgs' cocok untuk dataset kecil hingga menengah.
+  - `penalty`: Untuk memilih jenis regularisasi, seperti `l2` atau `elasticnet`.
+  - `max_iter`: Untuk memastikan solver mencapai konvergensi.
+
+- **Random Forest**
+  - `n_estimators`: Jumlah pohon dalam hutan. Semakin banyak pohon bisa meningkatkan akurasi, tapi juga meningkatkan waktu komputasi.
+  - `max_depth`: Membatasi kedalaman pohon untuk menghindari overfitting.
+  - `min_samples_split` & `min_samples_leaf`: Mengontrol pembagian node agar tidak terlalu spesifik terhadap data latih.
+  - `max_features`: Menentukan jumlah fitur yang dipertimbangkan saat split untuk mengurangi korelasi antar pohon.
+
+- **XGBoost**
+  - `n_estimators`: Jumlah boosting rounds. Lebih banyak iterasi bisa meningkatkan akurasi jika tidak overfit.
+  - `max_depth`: Mengontrol kompleksitas model. Depth terlalu tinggi bisa overfit.
+  - `learning_rate`: Mengontrol ukuran langkah setiap boosting step. Nilai kecil membuat training lebih lambat tapi bisa mencapai generalisasi lebih baik.
+  - `subsample`: Proporsi sampel yang digunakan untuk melatih setiap pohon. Membantu mengurangi overfitting.
+  - `colsample_bytree`: Proporsi fitur yang dipilih untuk setiap pohon. Membantu diversifikasi model.
 
 ---
 
 ### 🏆 **Pemilihan Model Terbaik**
 
-Berdasarkan hasil evaluasi, model **XGBoost** dipilih sebagai **model terbaik** karena:
+Setelah dilakukan tuning, performa terbaik ditunjukkan oleh **XGBoost** dengan akurasi 93% dan F1-score yang tinggi serta seimbang di kedua kelas. Meskipun Logistic Regression dan Random Forest juga memberikan hasil yang baik, peningkatan performa setelah tuning tidak terlalu signifikan. 
 
-- Memberikan **akurasi tertinggi** (93%)
-- Memiliki nilai F1-score yang **seimbang dan tinggi di kedua kelas**
-- Fitur-fitur seperti `subsample` dan `colsample_bytree` membantu dalam mengurangi risiko overfitting
-- Lebih efisien untuk menangani dataset besar dan kompleks
+XGBoost unggul karena:
 
+- Memiliki **kemampuan regularisasi** (`lambda`, `alpha`) yang membantu menghindari overfitting.
+- Dapat menangani dataset besar dan kompleks dengan baik.
+- Memberikan **hasil evaluasi terbaik secara konsisten**, baik sebelum maupun sesudah tuning
 ---
 
 ## 📊 **Evaluation**
@@ -359,11 +302,11 @@ Formulasi masing-masing metrik:
 
 ### 🤖 **2. Hasil Evaluasi Model**
 
-| **Model**              | **Accuracy** | **Precision (1)** | **Recall (1)** | **F1 Score (1)** |
-|------------------------|--------------|-------------------|----------------|------------------|
-| **Logistic Regression**| 0.88         | 0.84              | 0.93           | 0.88             |
-| **Random Forest**      | 0.91         | 0.89              | 0.94           | 0.91             |
-| **XGBoost**            | 0.93         | 0.92              | 0.94           | 0.93             |
+| **Model**               | **Accuracy** | **Precision (1)** | **Recall (1)** | **F1 Score (1)** |
+| ----------------------- | ------------ | ----------------- | -------------- | ---------------- |
+| **Logistic Regression** | 0.88         | 0.84              | 0.93           | 0.88             |
+| **Random Forest**       | 0.91         | 0.89              | 0.94           | 0.91             |
+| **XGBoost**             | 0.93         | 0.92              | 0.94           | 0.93             |
 
 Keterangan:
 - **(1)** mengacu pada kelas positif (`loan_status = 1`, pinjaman disetujui).
