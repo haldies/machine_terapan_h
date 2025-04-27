@@ -61,13 +61,13 @@ Dataset yang digunakan dalam proyek ini merupakan versi sintetis dari data risik
 ---
 ## 🧾 visual dataset Struktur Dataset
 
-![alt text](StrukturDataset.png)
+![alt text](https://raw.githubusercontent.com/haldies/machine_terapan_h/main/image/StrukturDataset.png)
 ---
 Tipe Data: Secara keseluruhan, tipe data sudah sesuai.
 
 ## 📈 Statistik Deskriptif (Numerik)
 
-![alt text](Deskriptif.png)
+![alt text](https://raw.githubusercontent.com/haldies/machine_terapan_h/main/image/Deskriptif.png)
 ---
 Usia (person_age): Nilai maksimal usia adalah 144, yang tidak realistis. Ini menunjukkan adanya outlier yang perlu diperiksa lebih lanjut.
 
@@ -98,7 +98,7 @@ Pengalaman Kerja (person_emp_exp): Pengalaman kerja maksimal yang sangat tinggi 
 Tidak ada data yang memiliki nilai hilang (missing value).
 
 ## 📊 Visualisasi Distribusi Data
-![alt text](Distribusi_Data.png)
+![alt text](https://raw.githubusercontent.com/haldies/machine_terapan_h/main/image/Distribusi_Data.png)
 .
 1. **Distribusi Umur Pemohon (`person_age`)**
 **Insight**:  
@@ -141,7 +141,7 @@ Tidak ada data yang memiliki nilai hilang (missing value).
 ---
 
 ## 📊 Melihat visualisasi Distribusi Data Kategorikal
-![alt text](Data_Kategorikal.png)
+![alt text](https://raw.githubusercontent.com/haldies/machine_terapan_h/main/image/Data_Kategorikal.png)
 
 - **Distribusi Gender (person_gender)**
 🔎 Jumlah peminjam laki-laki sedikit lebih banyak dibanding perempuan. Ini menunjukkan bahwa partisipasi dalam pengajuan pinjaman didominasi laki-laki, tapi perbedaannya tidak terlalu jauh.
@@ -166,7 +166,7 @@ Berdasarkan matriks korelasi di atas, variabel yang memiliki hubungan paling kua
 
 ## 📊 Distribusi Status Pinjaman
 
-![alt text](loan_status.png)
+![alt text](https://raw.githubusercontent.com/haldies/machine_terapan_h/main/image/loan_status.png)
 Distribusi data pada kolom loan_status menunjukkan bahwa data pinjaman sekitar (77,8%) tidak disetujui (loan_status = 0) dan data pinjaman sekitar (22,2%) yang disetujui (loan_status = 1). Hal ini menunjukkan ketidakseimbangan data (data imbalance), yang penting diperhatikan saat melakukan analisis atau pelatihan model prediksi, karena model bisa cenderung memprediksi mayoritas kelas.
 
 ## Data Preparation
